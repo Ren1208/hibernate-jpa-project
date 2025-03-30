@@ -10,6 +10,7 @@ import ru.semenchenko.library.models.Person;
 import ru.semenchenko.library.repositories.BooksRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Artyom Semenchenko
@@ -87,6 +88,10 @@ public class BooksService {
                     Sort.by("yearOfRelease"))).getContent();
         else
             return booksRepository.findAll(PageRequest.of(page, numberOfBooksPerPage)).getContent();
+    }
+
+    public List<Book> searchByTitle(String name) {
+        return booksRepository.findByNameStartingWith(name);
     }
 
 }
