@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.semenchenko.library.models.Person;
-import ru.semenchenko.library.sevices.PeopleService;
+import ru.semenchenko.library.services.PeopleService;
 
 /**
  * @author Artyom Semenchenko

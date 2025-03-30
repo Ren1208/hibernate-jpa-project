@@ -1,7 +1,6 @@
-package ru.semenchenko.library.sevices;
+package ru.semenchenko.library.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

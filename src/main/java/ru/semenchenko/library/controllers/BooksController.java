@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.semenchenko.library.models.Book;
 import ru.semenchenko.library.models.Person;
-import ru.semenchenko.library.sevices.BooksService;
-import ru.semenchenko.library.sevices.PeopleService;
+import ru.semenchenko.library.services.BooksService;
+import ru.semenchenko.library.services.PeopleService;
 
 /**
  * @author Artyom Semenchenko

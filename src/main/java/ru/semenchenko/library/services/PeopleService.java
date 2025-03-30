@@ -1,4 +1,4 @@
-package ru.semenchenko.library.sevices;
+package ru.semenchenko.library.services;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
