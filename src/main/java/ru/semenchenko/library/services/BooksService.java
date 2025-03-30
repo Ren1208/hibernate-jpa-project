@@ -9,6 +9,7 @@ import ru.semenchenko.library.models.Book;
 import ru.semenchenko.library.models.Person;
 import ru.semenchenko.library.repositories.BooksRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,8 @@ public class BooksService {
                 book -> {
                     updatedBook.setBookId(id);
                     updatedBook.setOwner(book.getOwner());
+                    updatedBook.setTakenAt(book.getTakenAt());
+                    updatedBook.setExpired(book.isExpired());
 
                     booksRepository.save(updatedBook);
                 });
@@ -68,6 +71,8 @@ public class BooksService {
         booksRepository.findById(id).ifPresent(
                 book -> {
                     book.setOwner(null);
+                    book.setTakenAt(null);
+                    book.setExpired(false);
                 });
     }
 
@@ -76,6 +81,7 @@ public class BooksService {
         booksRepository.findById(id).ifPresent(
                 book -> {
                     book.setOwner(selectedPerson);
+                    book.setTakenAt(new Date());
                 }
         );
     }

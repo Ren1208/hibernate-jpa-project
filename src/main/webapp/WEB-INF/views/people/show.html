@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Информация о человеке</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Show</title>
 </head>
 <body>
 <p th:text="${person.getName() + ', ' + person.getYearOfBirth()}">VALUE</p>
@@ -17,7 +18,14 @@
     <b>Книги:</b>
     <br/>
     <table th:each="book : ${books}">
-        <tr th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRelease()}">book</tr>
+        <tr>
+            <td>
+                <span th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYearOfRelease()}"
+                      th:style="${book.isExpired()} ? 'color: red' : 'color: black'">
+                    book
+                </span>
+            </td>
+        </tr>
     </table>
     <hr/>
 </div>
@@ -26,10 +34,9 @@
     <input type="submit" value="Редактировать"/>
 </form>
 
-<br/>
-
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getPersonId()})}">
     <input type="submit" value="Удалить"/>
 </form>
+
 </body>
 </html>

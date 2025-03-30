@@ -9,6 +9,7 @@ import ru.semenchenko.library.models.Person;
 import ru.semenchenko.library.repositories.PeopleRepository;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,15 +57,24 @@ public class PeopleService {
 
         if (person.isPresent()) {
             Hibernate.initialize(person.get().getBooks());
+
+            // Проверка просроченности книг
+            person.get().getBooks().forEach(book -> {
+                long diffInMillies = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
+                // 864000000 милисекунд = 10 суток
+                if (diffInMillies > 864000000)
+                    book.setExpired(true); // книга просрочена
+            });
+
             return person.get().getBooks();
         }
-        else
+        else {
             return Collections.emptyList();
+        }
     }
 
     public Optional<Person> getPersonByName(String name){
         return peopleRepository.findByName(name);
     }
-
 
 }

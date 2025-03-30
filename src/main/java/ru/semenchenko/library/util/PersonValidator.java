@@ -29,7 +29,12 @@ public class PersonValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Person person = (Person) o;
 
-        if (peopleService.getPersonByName(person.getName()).isPresent())
-            errors.rejectValue("name", "", "Человек с таким ФИО уже существует");
+        // Проверяем, есть ли человек с таким ФИО в БД
+        peopleService.getPersonByName(person.getName()).ifPresent(foundPerson -> {
+            // Если найденный человек - не тот, которого мы редактируем (разные ID)
+            if (person.getPersonId() != foundPerson.getPersonId()) {
+                errors.rejectValue("name", "", "Человек с таким ФИО уже существует");
+            }
+        });
     }
 }
