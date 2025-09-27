@@ -29,7 +29,7 @@ public class PeopleController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
-        return "/people/index";
+        return "people/index";
     }
 
     @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class PeopleController {
         model.addAttribute("person", peopleService.findOne(id));
         model.addAttribute("books", peopleService.getBooksByPersonId(id));
 
-        return "/people/show";
+        return "people/show";
     }
 
     @GetMapping("/new")
@@ -45,13 +45,13 @@ public class PeopleController {
         return "people/new";
     }
 
-    @PostMapping
+    @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
 
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
-            return "/people/new";
+            return "people/new";
 
         peopleService.save(person);
         return "redirect:/people";
@@ -61,7 +61,7 @@ public class PeopleController {
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", peopleService.findOne(id));
 
-        return "/people/edit";
+        return "people/edit";
     }
 
     @PatchMapping("/{id}")
@@ -72,7 +72,7 @@ public class PeopleController {
         personValidator.validate(person, bindingResult);
 
         if (bindingResult.hasErrors())
-            return "/people/edit";
+            return "people/edit";
 
         peopleService.update(id, person);
         return "redirect:/people";

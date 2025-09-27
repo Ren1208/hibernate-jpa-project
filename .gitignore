@@ -19,8 +19,8 @@ target/
 *.iml
 *.ipr
 
-# Игнорировать файл с настройками БД
 src/main/resources/application.properties
+db_password.txt
 
 ### NetBeans ###
 /nbproject/private/

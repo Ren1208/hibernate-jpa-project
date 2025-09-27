@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @author Artyom Semenchenko
  */
 
+@Data
 @Entity
 @Table(name = "Book")
 public class Book {
@@ -45,68 +47,4 @@ public class Book {
     @Transient
     private boolean expired;
 
-    public Book() {
-    }
-
-    public Book(String name, String author, int yearOfRelease) {
-        this.name = name;
-        this.author = author;
-        this.yearOfRelease = yearOfRelease;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getYearOfRelease() {
-        return yearOfRelease;
-    }
-
-    public void setYearOfRelease(int yearOfRelease) {
-        this.yearOfRelease = yearOfRelease;
-    }
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-
-    public Date getTakenAt() {
-        return takenAt;
-    }
-
-    public void setTakenAt(Date takenAt) {
-        this.takenAt = takenAt;
-    }
-
-    public boolean isExpired() {
-        return expired;
-    }
-
-    public void setExpired(boolean expired) {
-        this.expired = expired;
-    }
 }

@@ -37,7 +37,7 @@ public class BooksController {
         else
             model.addAttribute("books", booksService.findWithPagination(page,
                     numberOfBooksPerPage, sortedByYear));
-        return "/books/index";
+        return "books/index";
     }
 
     @GetMapping("/{id}")
@@ -52,7 +52,7 @@ public class BooksController {
         else
             model.addAttribute("people", peopleService.findAll());
 
-        return "/books/show";
+        return "books/show";
     }
 
     @GetMapping("/new")
@@ -74,7 +74,7 @@ public class BooksController {
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("book", booksService.findOne(id));
 
-        return "/books/edit";
+        return "books/edit";
     }
 
     @PatchMapping("/{id}")
@@ -82,7 +82,7 @@ public class BooksController {
                          BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
-            return "/books/edit";
+            return "books/edit";
 
         booksService.update(id, book);
         return "redirect:/books";
@@ -116,7 +116,7 @@ public class BooksController {
     @PatchMapping("/search")
     public String makeSearch(Model model, @RequestParam("query") String query) {
         model.addAttribute("books", booksService.searchByTitle(query));
-        return "/books/search";
+        return "books/search";
     }
 
 }

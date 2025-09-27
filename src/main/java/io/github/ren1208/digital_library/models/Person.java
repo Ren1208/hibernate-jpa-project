@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author Artyom Semenchenko
  */
 
+@Data
 @Entity
 @Table(name = "Person")
 public class Person {
@@ -34,43 +36,5 @@ public class Person {
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    public Person() {
-    }
 
-    public Person(String name, int yearOfBirth) {
-        this.name = name;
-        this.yearOfBirth = yearOfBirth;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
 }
