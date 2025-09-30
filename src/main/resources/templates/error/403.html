@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Доступ запрещен</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Доступ запрещен (403)</h1>
+<p>У вас недостаточно прав для просмотра этой страницы.</p>
+<a th:href="@{/hello}">Вернуться на главную</a>
+<br/>
+<a th:href="@{/auth/login}">Войти под другой учетной записью</a>
+</body>
+</html>

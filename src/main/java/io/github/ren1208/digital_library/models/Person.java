@@ -23,7 +23,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int personId;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Book> books;
 
     @NotEmpty(message = "ФИО не может быть пустым.")
@@ -36,5 +36,11 @@ public class Person {
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
+    @Column(name = "password")
+    @NotEmpty(message = "Пароль не может быть пустым")
+    private String password;
+
+    @Column(name = "role")
+    private String role;
 
 }

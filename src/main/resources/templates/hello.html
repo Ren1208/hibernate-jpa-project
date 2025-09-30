@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+
+<p>Здравствуйте, <span th:text="${person.name}">Имя</span></p>
+<br/>
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Выйти из учётной записи"/>
+</form>
+
+</body>
+</html>
