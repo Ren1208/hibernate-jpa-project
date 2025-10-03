@@ -7,6 +7,7 @@
 <body>
 
 <p>Здравствуйте, <span th:text="${person.name}">Имя</span></p>
+<hr/>
 <br/>
 <form th:action="@{/logout}" th:method="POST">
     <input type="submit" value="Выйти из учётной записи"/>
