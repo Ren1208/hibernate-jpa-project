@@ -40,23 +40,6 @@ public class PeopleController {
         return "people/show";
     }
 
-    @GetMapping("/new")
-    public String newPerson(@ModelAttribute("person") Person person) {
-        return "people/new";
-    }
-
-    @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person,
-                         BindingResult bindingResult) {
-
-        personValidator.validate(person, bindingResult);
-        if (bindingResult.hasErrors())
-            return "people/new";
-
-        peopleService.save(person);
-        return "redirect:/people";
-    }
-
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", peopleService.findOne(id));
