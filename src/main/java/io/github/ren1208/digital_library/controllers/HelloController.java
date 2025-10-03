@@ -19,9 +19,7 @@ public class HelloController {
     public String sayHello(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null && authentication.isAuthenticated() &&
-                !(authentication.getPrincipal() instanceof String)) {
-
+        if (isAuthenticated(authentication)) {
             PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
             Person person = personDetails.getPerson();
             model.addAttribute("person", person);
@@ -31,12 +29,24 @@ public class HelloController {
     }
 
     @GetMapping("/showUserInfo")
-    public String showUserInfo() {
+    public String showUserInfo(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        System.out.println(personDetails.getPerson());
+
+        if (isAuthenticated(authentication)) {
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+            Person person = personDetails.getPerson();
+            System.out.println(person);
+            model.addAttribute("person", person);
+        }
 
         return "hello";
+    }
+
+    private boolean isAuthenticated(Authentication authentication) {
+        return authentication != null
+                && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String)
+                && authentication.getPrincipal() instanceof PersonDetails;
     }
 
 }
